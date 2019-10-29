@@ -11,4 +11,7 @@ resource "aws_instance" "base" {
     instance_type = "t2.micro"
 }
 
+resource "aws_eip" "base" {
+	instance = "${aws_instance.base.id}"
+}
 

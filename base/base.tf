@@ -1,8 +1,7 @@
 /* Base Config */
 
 provider "aws"{
-    access_key = ""
-    secret_key = ""
+    shared_credentials_file = "~/.aws/credentials"
     region     = "us-east-2"
 }
 

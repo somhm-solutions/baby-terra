@@ -2,15 +2,17 @@
 
 provider "aws"{
     shared_credentials_file = "~/.aws/credentials"
-    region     = "us-east-2"
+    region     = ["${var.region_list}"]
 }
 
 resource "aws_instance" "base" {
-    ami = "ami-00c03f7f7f2ec15c3"
+    ami = "${lookup(var.ami, var.region)}"
     instance_type = "t2.micro"
+    vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
 }
 
 resource "aws_eip" "base" {
 	instance = "${aws_instance.base.id}"
+    vpc = true
 }
 

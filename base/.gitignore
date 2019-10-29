@@ -1,1 +1,3 @@
-".base-auth.tf"
+
+terraform.tfstate*
+.base*

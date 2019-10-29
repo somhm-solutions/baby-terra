@@ -1,0 +1,57 @@
+arn                          = (known after ap
+      + associate_public_ip_address  = (known after ap
+      + availability_zone            = (known after ap
+      + cpu_core_count               = (known after ap
+      + cpu_threads_per_core         = (known after ap
+      + get_password_data            = false
+      + host_id                      = (known after ap
+      + id                           = (known after ap
+      + instance_state               = (known after ap
+      + instance_type                = "t2.micro"
+      + ipv6_address_count           = (known after ap
+      + ipv6_addresses               = (known after ap
+      + key_name                     = (known after ap
+      + network_interface_id         = (known after ap
+      + password_data                = (known after ap
+      + placement_group              = (known after ap
+      + primary_network_interface_id = (known after ap
+      + private_dns                  = (known after ap
+      + private_ip                   = (known after ap
+      + public_dns                   = (known after ap
+      + public_ip                    = (known after ap
+      + security_groups              = (known after ap
+      + source_dest_check            = true
+      + subnet_id                    = (known after ap
+      + tenancy                      = (known after ap
+      + volume_tags                  = (known after ap
+      + vpc_security_group_ids       = (known after ap
+
+      + ebs_block_device {
+          + delete_on_termination = (known after apply
+          + device_name           = (known after apply
+          + encrypted             = (known after apply
+          + iops                  = (known after apply
+          + kms_key_id            = (known after apply
+          + snapshot_id           = (known after apply
+          + volume_id             = (known after apply
+          + volume_size           = (known after apply
+          + volume_type           = (known after apply
+        }
+
+      + ephemeral_block_device {
+          + device_name  = (known after apply)
+          + no_device    = (known after apply)
+          + virtual_name = (known after apply)
+        }
+
+      + network_interface {
+          + delete_on_termination = (known after apply
+          + device_index          = (known after apply
+          + network_interface_id  = (known after apply
+        }
+
+      + root_block_device {
+          + delete_on_termination = (known after apply
+          + encrypted             = (known after apply
+          + iops                  = (known after apply
+    }                     

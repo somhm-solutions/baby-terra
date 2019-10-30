@@ -74,7 +74,7 @@ resource "aws_elb" "web" {
     lb_protocol       = "http"
   }
   # Instance registered automatatically
-  instances = ["${aws_instance.web.*.id}", ]
+  instances = "${aws_instance.web[*].id}"
 }
 
 # Create AWS Security Group Resource

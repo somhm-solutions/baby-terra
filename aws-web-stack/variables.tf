@@ -14,10 +14,13 @@ variable "key_name" {
   default = "~/.ssh/terraform"
 }
 
-variable "ami" {
-  type        = "map"
-  description = "Amis to use"
-  default     = {}
+variable "ami"{
+    type = "map"
+    default = {
+        us-east-1 = "ami-00c03f7f7f2ec15c3"
+        us-east-2 = "ami-04763b3055de4860b"
+    }
+    description = "Ami's to use."
 }
 
 variable "instance_type" {

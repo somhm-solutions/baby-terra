@@ -23,7 +23,7 @@ variable "enable_dns_support" {
 
 output "public_subnet_id" {
     value = "${aws_vpc.tfb.id}"
-    sensetive = true
+    sensitive = true
 }
 
 output "vpc_id" {

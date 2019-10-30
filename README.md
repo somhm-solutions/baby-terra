@@ -26,7 +26,6 @@ terraform destroy
 '''
 
 
-## License
-MIT
+
 
 

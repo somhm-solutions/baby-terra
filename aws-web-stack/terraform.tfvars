@@ -1,13 +1,5 @@
 # Terraform Variables
 
-variable "access_key"{
-    description = "AWS Access"
-}
-
-variable "secret_key" {
-    description = "AWS Secret"
-}
-
 variable "region" {
     description = "AWS Region"
 }

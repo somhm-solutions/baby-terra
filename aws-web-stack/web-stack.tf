@@ -18,6 +18,10 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
 }
 */
+# Create local variable
+locals {
+    ami_list = "${lookup(var.ami, var.region)}"
+}
 
 # Create EC2 Resources
 resource "aws_instance" "web" {
@@ -35,19 +39,25 @@ resource "aws_instance" "web" {
     associate_public_ip_address = true
     
 
-    # User data file
+    # User data: Use file() to load data as attribute
     user_data = "${file("files/web_bootstrap.sh")}"
 
     # Vpc Security Groups to Use
     vpc_security_group_ids = ["${aws_security_group.web_host_sg.id}",]
 
     # Tags to place on Instances
-    tags = {
-        Name = ""web-${format("%03d", count.index + 1)}""
+    tags  {
+        # Use format() to format with go  fmt backend
+        Name = "web-${format("%03d", count.index + 1)}"
+        # Use element to wrap elements in list in loop
+        Owner = "${element(var.owner_tag[count.index])}"
     }
 
     # Specify Number of Resources to be Created
-    count = length("${var.instance_ips}")
+    # Use count over length to loop through resources 
+    count = "${length(var.instance_ips)}"
+    # Alternatively, use terenary to push to use conditionals in build pipeline
+    #count = "${var.enviroment == "production" ? 4 : 2}"
 }
 
 # Create Elastic Load Balancer Resource

@@ -3,7 +3,7 @@ provider "aws" {
     region = "${var.region}"
 }
 
-# Define Vpc
+# Define imported Vpc module
 module "vpc" {
     #source = "../networking/vpc"
     source = "./vpc"
@@ -11,6 +11,11 @@ module "vpc" {
     cidr = "10.0.0.0/16"
     public_subnet = "10.0.1.0/24"
 }
+
+/*module "terraform-registry-vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+}
+*/
 
 # Create EC2 Resource
 resource "aws_instance" "web" {
@@ -35,3 +40,19 @@ resource "aws_instance" "web" {
     count = 2
 }
 
+resource "aws_elb" "web" {
+    name = "web-elb"
+    subnets = ["${module.vpc.public_subnet_id}"]
+    security_groups = ["${aws_security_group.web_inbound_sg.id}",]
+    listener {
+        instance_port = 80
+        instance_protocol = "http"
+        lb_port = 80
+        lb_protocol = "http"
+    }
+    instances = ["${aws_instance.web.*.id}",]
+}
+
+resource "aws_security_group" "web_inbound_sg"{
+
+}

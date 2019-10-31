@@ -6,7 +6,7 @@ provider "aws"{
 }
 
 resource "aws_instance" "base" {
-    ami = "${lookup(var.ami, var.region)}"
+    ami = "${var.ami}"
     instance_type = "t2.micro"
 #    vpc_security_group_ids = ["${var.vpc_security_group_ids}"]
 }

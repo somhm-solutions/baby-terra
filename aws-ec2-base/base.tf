@@ -1,7 +1,7 @@
 /* Base Config */
 
 provider "aws"{
-    shared_credentials_file = "~/.aws/credentials"
+    shared_credentials_file = "${var.credentials_path}"
     region     = "${var.region}"
 }
 
